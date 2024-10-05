@@ -15,6 +15,7 @@
     <ul>
         {% for task in tasks %}
         <li>
+            {{task}}
             <!-- Delete button -->
             <form action="{{ url_for('delete_task', task=task) }}" method="POST" style="display:inline;">
                 <button id="delete" type="submit">Delete</button>
