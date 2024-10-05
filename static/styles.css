@@ -1,82 +1,272 @@
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #000000;
-  color: #333;
+  background-color: #1E1E2E; /* Dark Indigo background */
+  color: #FFFFFF; /* White text color */
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  transition: background-color 0.5s ease;
 }
 
+/* Container to hold everything centrally */
+.container {
+  width: 100%;
+  max-width: 500px; /* Fixed width for desktop view */
+  max-height: 80%;
+  overflow-y: auto; /* Scroll if needed */
+  background-color: #2A2A40; /* Darker background for content */
+  padding: 20px 25px;
+  border-radius: 12px; /* Smooth rounded corners */
+  box-shadow: 2px 7px 7px rgb(44, 44, 44); /* Soft shadow for elevation */
+  text-align: center; /* Center the text inside container */
+  animation: fadeIn 1s; /* Fade in animation */
+}
+
+/* Heading Styles */
 h1 {
-  text-align: center;
-  color: #17a2b8;
+  font-size: 2.5em; /* Increased font size */
+  color: #FFFFFF; /* White for the main heading */
+  margin-top: 10px;
+  margin-bottom: 5px;
+  animation: slideIn 1s; /* Slide in animation */
+}
+
+h2 {
+  font-size: 1.2em;
+  color: #B0BEC5; /* Lighter gray for subheading */
+  margin-bottom: 20px;
+  animation: slideIn 1s; 
+}
+
+/* Form Styles */
+#first-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 form {
   display: flex;
   justify-content: center;
+  align-items: center;  
 }
 
 input[type="text"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 250px;
-  background-color: #333;
-  color: #fff;
-}
-
-button {
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 4px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  margin-left: 10px;
+  border-radius: 5px;
+  width: 70%; /* Responsive width */
+  background-color: #33334D; /* Dark gray background for input */
+  color: #FFFFFF; /* White text inside input */
+  margin-right: 10px;
+  outline: none; /* Removes the outline on focus */
+  animation: fadeIn 1s; /* Fade in animation */
   transition: background-color 0.3s ease;
 }
 
-button#toggle {
-  background-color: #4CAF50;
+input[type="text"]:focus {
+  background-color: #44445A; /* Darker gray background for input on focus */
 }
 
-button#toggle:hover {
-  background-color: #45a049;
+button {
+  padding: 11px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50; /* Green background for add button */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: fadeIn 1s; /* Fade in animation */
 }
 
-#delete {
-  background-color: red;
+button:hover {
+  background-color: #66BB6A; /* Lighter green on hover */
 }
 
+/* Task List Styles */
 ul {
   list-style-type: none;
   padding: 0;
+  margin:  0;
+}
+
+ul li p {
+  margin: 0 ;
 }
 
 li {
-  background: #333;
-  color: #fff;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 4px;
+  background: #33334D; /* Dark gray background for task items */
+  color: #FFFFFF; /* White text for task items */
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 18px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  align-items: center; /* Add this line to center the button vertically */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Slight shadow for tasks */
+  animation: slideIn 1s; /* Slide in animation */
 }
 
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
+/* Delete button inside task */
+#delete {
+  background-color: #F44336; /* Red for delete button */
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: fadeIn 1s; /* Fade in animation */
 }
 
-.task-details {
-  flex-grow: 1;
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* Full width on smaller devices */
+    padding: 15px;
+  }
+
+  #first-form{
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  input[type="text"] {
+    width: 80%; /* Full width for input on mobile */
+    margin-bottom: 10px; /* Add space below input */
+  }
+
+  #add_button {
+    width: 20%; /* Full width for button on mobile */
+    margin-bottom: 10px;
+  }
+
+  li {
+    flex-direction: row; /* Keep the button and text in the same line */
+    align-items: center; /* Center the button vertically */
+  }
+
 }
 
-.task-actions {
-  display: flex;
-  gap: 5px; /* Adds some space between the buttons */
+/* Additional Responsive Adjustments for Extra Small Screens */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2em; /* Adjust font size for small screens */
+  }
+
+  h2 {
+    font-size: 1.1em; /* Adjust subheading font size */
+  }
+
+  #first-form{
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  input[type="text"] {
+    width: 75%; /* Full width for input on mobile */
+    margin-bottom: 10px; /* Add space below input */
+  }
+
+  #add_button {
+    width: 25%; /* Full width for button on mobile */
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 10px; /* Smaller button padding */
+  }
+
+  input[type="text"] {
+    padding: 10px; /* Smaller input padding */
+  }
+
+  li {
+    flex-direction: column; /* Stack content in tasks on mobile */
+    align-items: center; /* Center the delete button horizontally */
+  }
+
+  #delete {
+    margin-top: 10px; /* Add space between task and delete button */
+    width: 100%; /* Full width for delete button */
+    text-align: center; /* Center text on delete button */
+  }
+}
+
+@media (max-width: 380px) {
+  input[type="text"] {
+    width: 67%; /* Full width for input on mobile */
+    margin-bottom: 10px; /* Add space below input */
+  }
+  #add_button {
+    width: 30%;
+    padding: 10px 7px;
+    font-size: smaller;
+  }
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 5px; /* Thinner scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f44336; /* Darker gray for scrollbar thumb */
+  border-radius: 10px; /* Rounded edges */
+  border: 2px solid #1E1E2E; /* Adds space between scrollbar and thumb, blends with background */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #77778F; /* Slightly lighter gray on hover */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #2A2A40; /* Darker background for scrollbar track */
+}
+
+/* For Firefox (scrollbar width) */
+html {
+  scrollbar-width: thin; /* Ensures thinner scrollbar in Firefox */
+  scrollbar-color: #555574 #2A2A40; /* Dark gray thumb and matching background */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.form-check-input:checked {
+  background-color: #4CAF50; /* Change the background color when checked */
+  border-color: #4CAF50; /* Change the border color when checked */
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25); /* Add focus outline */
+  border-radius: 5px;
+}
+
+/* Optionally, you can also style the label */
+.form-check-label {
+  margin-left: 8px; /* Add some space between checkbox and label */
 }
