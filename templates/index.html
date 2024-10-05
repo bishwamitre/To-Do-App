@@ -3,27 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
-
+    <title>To-Do App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Task Manager</h1>
-
-    <form action="{{ url_for('add_task') }}" method="post">
-        <input type="text" name="task" placeholder="Enter a new task" required>
+    <h1>To-Do List</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Add a new task" required>
         <button type="submit">Add Task</button>
     </form>
-
-    <h2>Tasks</h2>
     <ul>
-        {% for task, status in tasks.items() %}
-        <li class="{{ 'done' if status == 'Done' else '' }}">
-            {{ task }}
-            <form action="{{ url_for('complete_task', task=task) }}" method="post" style="display:inline;">
-                <button type="submit" {% if status == 'Done' %}disabled{% endif %}>Done</button>
-            </form>
-            <form action="{{ url_for('delete_task', task=task) }}" method="post" style="display:inline;">
-                <button type="submit">Delete</button>
+        {% for task in tasks %}
+        <li>
+            <!-- Delete button -->
+            <form action="{{ url_for('delete_task', task=task) }}" method="POST" style="display:inline;">
+                <button id="delete" type="submit">Delete</button>
             </form>
         </li>
         {% endfor %}
