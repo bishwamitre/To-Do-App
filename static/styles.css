@@ -58,8 +58,9 @@ form {
 }
 
 input[type="text"] {
-  padding: 12px;
+  padding: 10px;
   border: none;
+  font-size: 16.5px ;
   border-radius: 5px;
   width: 70%; /* Responsive width */
   background-color: #33334D; /* Dark gray background for input */
