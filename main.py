@@ -22,6 +22,13 @@ def delete_task(task):
         del tasks[task]  # Delete task from the dictionary
     return redirect(url_for('index'))
 
+@app.route('/toggle/<task>', methods=['POST'])
+def toggle_task_status(task):
+    if task in tasks:
+        # Toggle between "Pending" and "Done"
+        tasks[task] = "Done" if tasks[task] == "Pending" else "Pending"
+    return redirect(url_for('index'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

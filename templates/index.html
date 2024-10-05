@@ -3,23 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do App</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>To-Do List</h1>
-    <form action="/add" method="POST">
-        <input type="text" name="task" placeholder="Add a new task" required>
+
+    <!-- Form to add a new task -->
+    <form action="{{ url_for('add_task') }}" method="POST">
+        <input type="text" name="task" placeholder="Enter task" required>
         <button type="submit">Add Task</button>
     </form>
+
     <ul>
-        {% for task in tasks %}
+        <!-- Loop through tasks and display each task with its status -->
+        {% for task, status in tasks.items() %}
         <li>
-            {{task}}
-            <!-- Delete button -->
-            <form action="{{ url_for('delete_task', task=task) }}" method="POST" style="display:inline;">
-                <button id="delete" type="submit">Delete</button>
-            </form>
+            <div class="task-item">
+                <div class="task-details">
+                    {% if status == "Done" %}
+                        <strike>{{ task }}</strike>
+                    {% else %}
+                        {{ task }}
+                    {% endif %}
+                </div>
+
+                <div class="task-actions">
+                    <!-- Toggle between "Done" and "Undone" -->
+                    <form action="{{ url_for('toggle_task_status', task=task) }}" method="POST" style="display:inline;">
+                        <button id="toggle" type="submit">
+                            {% if status == "Pending" %}
+                                Done
+                            {% else %}
+                                Undone
+                            {% endif %}
+                        </button>
+                    </form>
+
+                    <!-- Delete button -->
+                    <form action="{{ url_for('delete_task', task=task) }}" method="POST" style="display:inline;">
+                        <button id="delete" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
         </li>
         {% endfor %}
     </ul>
