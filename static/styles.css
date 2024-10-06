@@ -68,15 +68,11 @@ li {
 .task-item {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   align-items: center;
 }
 
 .task-details {
   flex-grow: 1;
+  margin-left: 5px;
 }
 
-.task-actions {
-  display: flex;
-  gap: 5px; /* Adds some space between the buttons */
-}
